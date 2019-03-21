@@ -67,9 +67,17 @@ var Kanban = new jKanban({
             "class": "warning",
             "item": [{
                     "title": "Do Something!",
+                    "id": "Do Something!",
+                    "click": function (el) {
+                        Kanban.removeElement(el.dataset.eid)
+                    },
                 },
                 {
                     "title": "Run?",
+                    "id": "Run?",
+                    "click": function (el) {
+                        Kanban.removeElement(el.dataset.eid)
+                    },
                 }
             ]
         },
@@ -80,9 +88,17 @@ var Kanban = new jKanban({
             "dragTo": ['_working'],
             "item": [{
                     "title": "All right",
+                    "id": "All right",
+                    "click": function (el) {
+                        Kanban.removeElement(el.dataset.eid)
+                    },
                 },
                 {
                     "title": "Ok!",
+                    "id": "Ok",
+                    "click": function (el) {
+                        Kanban.removeElement(el.dataset.eid)
+                    },
                 }
             ]
         }
