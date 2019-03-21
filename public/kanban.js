@@ -1,4 +1,4 @@
-var KanbanTest = new jKanban({
+var Kanban = new jKanban({
     element: '#Kanban',
     gutter: '10px',
     widthBoard: '450px',
@@ -13,12 +13,16 @@ var KanbanTest = new jKanban({
         formItem.setAttribute("class", "itemform");
         formItem.innerHTML = '<div class="form-group"><textarea class="form-control" rows="2" autofocus></textarea></div><div class="form-group"><button type="submit" class="btn btn-primary btn-xs pull-right">Submit</button><button type="button" id="CancelBtn" class="btn btn-default btn-xs pull-right">Cancel</button></div>'
 
-        KanbanTest.addForm(boardId, formItem);
+        Kanban.addForm(boardId, formItem);
         formItem.addEventListener("submit", function (e) {
             e.preventDefault();
             var text = e.target[0].value
-            KanbanTest.addElement(boardId, {
+            Kanban.addElement(boardId, {
                 "title": text,
+                "id": text,
+                "click": function (el) {
+                    Kanban.removeElement(el.dataset.eid)
+                }
             })
             formItem.parentNode.removeChild(formItem);
         });
@@ -29,9 +33,9 @@ var KanbanTest = new jKanban({
     addItemButton: true,
     boards: [{
             "id": "_todo",
-            "title": "To Do (Can drop item only in working)",
+            "title": "To Do",
             "class": "info,good",
-            "dragTo": ['_working'],
+            "dragTo": ['_working', '_done'],
             "item": [{
                     "id": "_test_delete",
                     "title": "Try drag this (Look the console)",
@@ -47,15 +51,16 @@ var KanbanTest = new jKanban({
                 },
                 {
                     "title": "Try Click This!",
+                    "id": "click",
                     "click": function (el) {
-                        alert("click");
+                        Kanban.removeElement(el.dataset.eid)
                     },
                 }
             ]
         },
         {
             "id": "_working",
-            "title": "Working (Try drag me too)",
+            "title": "Working",
             "class": "warning",
             "item": [{
                     "title": "Do Something!",
@@ -83,7 +88,7 @@ var KanbanTest = new jKanban({
 
 var toDoButton = document.getElementById('addToDo');
 toDoButton.addEventListener('click', function () {
-    KanbanTest.addElement(
+    Kanban.addElement(
         "_todo", {
             "title": "Test Add",
         }
@@ -92,7 +97,7 @@ toDoButton.addEventListener('click', function () {
 
 var addBoardDefault = document.getElementById('addDefault');
 addBoardDefault.addEventListener('click', function () {
-    KanbanTest.addBoards(
+    Kanban.addBoards(
         [{
             "id": "_default",
             "title": "Kanban Default",
@@ -112,15 +117,15 @@ addBoardDefault.addEventListener('click', function () {
 
 var removeBoard = document.getElementById('removeBoard');
 removeBoard.addEventListener('click', function () {
-    KanbanTest.removeBoard('_done');
+    Kanban.removeBoard('_done');
 });
 
 var removeElement = document.getElementById('removeElement');
 removeElement.addEventListener('click', function () {
-    KanbanTest.removeElement('_test_delete');
+    Kanban.removeElement('_test_delete');
 });
 
-var allEle = KanbanTest.getBoardElements('_todo');
+var allEle = Kanban.getBoardElements('_todo');
 allEle.forEach(function (item, index) {
     //console.log(item);
 })
