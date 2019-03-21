@@ -9,11 +9,15 @@ var Kanban = new jKanban({
         console.log(el);
         console.log(boardId);
         // create a form to enter element 
-        var formItem = document.createElement('form');
+        let formItem = document.createElement('form');
+        let tagClass = document.createElement("select")
+        tagClass.setAttribute("class", "classTag")
+        tagClass.innerHTML = '<div class="tagSelect"><option value="None"></option><option value="red">Red</option><option value="green">Green</option><option value="blue">Blue</option><option value="pink">Pink</option></div>'
         formItem.setAttribute("class", "itemform");
         formItem.innerHTML = '<div class="form-group"><textarea class="form-control" rows="2" autofocus="true"></textarea></div><div class="form-group"><button type="submit" class="btn btn-primary btn-xs pull-right">Submit</button><button type="button" id="CancelBtn" class="btn btn-default btn-xs pull-right">Cancel</button></div>'
 
         Kanban.addForm(boardId, formItem);
+        Kanban.addForm(boardId, tagClass)
         formItem.addEventListener("submit", function (e) {
             e.preventDefault();
             var text = e.target[0].value
@@ -27,7 +31,9 @@ var Kanban = new jKanban({
             formItem.parentNode.removeChild(formItem);
         });
         document.getElementById('CancelBtn').onclick = function () {
+            formItem.parentNode.removeChild(tagClass)
             formItem.parentNode.removeChild(formItem)
+            
         }
     },
     addItemButton: true,
