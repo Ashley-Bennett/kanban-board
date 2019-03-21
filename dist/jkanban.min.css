@@ -3,6 +3,10 @@
     box-sizing: border-box
 }
 
+.green {
+    background: green;
+}
+
 .kanban-board:after,
 .kanban-container:after {
     clear: both;
@@ -71,6 +75,22 @@
     background: #fff;
     padding: 15px;
     margin-bottom: 20px
+}
+
+.kanban-item[data-class="green"] {
+    background: green;
+}
+
+.kanban-item[data-class="pink"] {
+    background: pink;
+}
+
+.kanban-item[data-class="red"] {
+    background: red;
+}
+
+.kanban-item[data-class="blue"] {
+    background: blue;
 }
 
 .kanban-item:hover {

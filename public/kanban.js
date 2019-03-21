@@ -9,20 +9,22 @@ var Kanban = new jKanban({
         console.log(el);
         console.log(boardId);
         // create a form to enter element 
-        var formItem = document.createElement('form');
+        let formItem = document.createElement('form');
         formItem.setAttribute("class", "itemform");
-        formItem.innerHTML = '<div class="form-group"><textarea class="form-control" rows="2" autofocus></textarea></div><div class="form-group"><button type="submit" class="btn btn-primary btn-xs pull-right">Submit</button><button type="button" id="CancelBtn" class="btn btn-default btn-xs pull-right">Cancel</button></div>'
+        formItem.innerHTML = '<div class="form-group"><textarea class="form-control" rows="2" autofocus="true"></textarea></div><div class="form-group"><button type="submit" class="btn btn-primary btn-xs pull-right">Submit</button><button type="button" id="CancelBtn" class="btn btn-default btn-xs pull-right">Cancel</button><select class="color-select"><option value="None"></option><option value="red">Red</option><option value="green">Green</option><option value="blue">Blue</option><option value="pink">Pink</option></select></div>'
 
         Kanban.addForm(boardId, formItem);
         formItem.addEventListener("submit", function (e) {
             e.preventDefault();
-            var text = e.target[0].value
+            let text = e.target[0].value
+            let color = e.target[3].value
             Kanban.addElement(boardId, {
                 "title": text,
                 "id": text,
                 "click": function (el) {
                     Kanban.removeElement(el.dataset.eid)
-                }
+                },
+                "class": color,
             })
             formItem.parentNode.removeChild(formItem);
         });
