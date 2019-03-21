@@ -38,6 +38,9 @@ var Kanban = new jKanban({
             "dragTo": ['_working', '_done'],
             "item": [{
                     "id": "_test_delete",
+                    "click": function (el) {
+                        Kanban.removeElement(el.dataset.eid)
+                    },
                     "title": "Try drag this (Look the console)",
                     "drag": function (el, source) {
                         console.log("START DRAG: " + el.dataset.eid);
