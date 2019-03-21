@@ -18,15 +18,19 @@ var Kanban = new jKanban({
             e.preventDefault();
             let text = e.target[0].value
             let color = e.target[3].value
-            Kanban.addElement(boardId, {
-                "title": text,
-                "id": text,
-                "click": function (el) {
-                    Kanban.removeElement(el.dataset.eid)
-                },
-                "class": color,
-            })
-            formItem.parentNode.removeChild(formItem);
+            if (text !== "") {
+                Kanban.addElement(boardId, {
+                    "title": text,
+                    "id": text,
+                    "click": function (el) {
+                        Kanban.removeElement(el.dataset.eid)
+                    },
+                    "class": color,
+                })
+                formItem.parentNode.removeChild(formItem);
+            } else {
+                alert("You can't submit an empty form")
+            }
         });
         document.getElementById('CancelBtn').onclick = function () {
             formItem.parentNode.removeChild(formItem)
