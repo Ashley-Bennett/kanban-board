@@ -41,7 +41,7 @@ app
 app
     .get(("/board/:boardid"), (req, res) => {
         taskController.readBoard(req,res)
-        console.log(res)
+        // console.log(res)
         // return res.send({object: res})
     })
 
