@@ -21,7 +21,12 @@ const BoardSchema = new Schema({
         "title": String,
         "id": String,
         "click": String,
-      }
+      },
+      {
+        "id": String,
+        "click": String,
+        "title": String,
+      },
     ]
 
 
