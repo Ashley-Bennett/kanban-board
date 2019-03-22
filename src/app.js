@@ -31,26 +31,20 @@ app
 
 app
     
-    .get("/board", (req, res) => {
-        if (req.query.title === "Hello") {
-            (taskController.createNewBoard)
-            // console.log("hi")
-        } else {
-            // console.log("hello")
-        }
-    })
+    
     .post("/board", (req, res) => {
-        
-            taskController.createNewBoard(req, res)
-            
-
+        taskController.createNewBoard(req, res)  
     })
     
     
 
 app
-    .route("/board/:boardid")
-    .get(taskController.readBoard);
+    .get(("/board/:boardid"), (req, res) => {
+        taskController.readBoard(req,res)
+        console.log(res)
+        // return res.send({object: res})
+    })
+
 
 app.listen(port, () => {
     console.log(`Server running at http://localhost:${port}`);

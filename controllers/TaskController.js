@@ -67,12 +67,12 @@ exports.createNewBoard = (req, res) => {
 };
 
 exports.readBoard = (req, res) => {
+  // console.log(req.params.boardid)
   Board.findById(req.params.boardid, (err, board) => {
     if (err) {
       res.status(500).send(err);
     }
-
-    res.status(200).json(board);
-    console.log(board.body.title)
+    // console.log(board)
+    res.send(board);
   });
 };
