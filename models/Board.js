@@ -4,7 +4,27 @@ const Schema = mongoose.Schema;
 const BoardSchema = new Schema({
   title: {
     type: String,
-    required: true
+    required: false
+  },
+
+  board: {
+    "id": String,
+    "title": String,
+    "class": String,
+    "dragTo": [String, String],
+    "item": [{
+        "id": String,
+        "click": String,
+        "title": String,
+      },
+      {
+        "title": String,
+        "id": String,
+        "click": String,
+      }
+    ]
+
+
   }
 });
 

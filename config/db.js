@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 
 const dbURI =
-  "mongodb+srv://alex:Password1@kanban-plwwq.mongodb.net/test?retryWrites=true";
+  "mongodb+srv://Ash:Password2@kanban-plwwq.mongodb.net/test?retryWrites=true";
 
 const options = {
   reconnectTries: Number.MAX_VALUE,

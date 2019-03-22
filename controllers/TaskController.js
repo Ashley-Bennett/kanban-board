@@ -56,11 +56,13 @@ exports.deleteTask = (req, res) => {
 
 exports.createNewBoard = (req, res) => {
   let newBoard = new Board(req.body);
+  console.log(req.body)
   newBoard.save((err, board) => {
     if (err) {
       res.status(500).send(err);
     }
-    res.status(201).json(board);
+    res.send(board);
+    console.log(board)
   });
 };
 
@@ -69,6 +71,8 @@ exports.readBoard = (req, res) => {
     if (err) {
       res.status(500).send(err);
     }
+
     res.status(200).json(board);
+    console.log(board.body.title)
   });
 };

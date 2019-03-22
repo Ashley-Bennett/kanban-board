@@ -4,25 +4,26 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <link rel="stylesheet" href="../dist/menu.css" />
-    <link rel="stylesheet" href="../dist/jkanban.min.css" />
+    <link rel="stylesheet" href="./menu.css" />
+    <link rel="stylesheet" href="./jkanban.min.css" />
     <title>Kanban Board</title>
   </head>
 
   <body>
     <div id="Menu">
       <ul>
-        <li><a class="active" href="http://google.co.uk">Menu 1</a></li>
+        <li><a class="active" id="newBoard">New Board</a></li>
         <li><a href="http://google.co.uk">Menu 2</a></li>
         <li><a href="http://google.co.uk">Menu 3</a></li>
         <li><a href="http://google.co.uk"></a></li>
       </ul>
       <h3>Kanboard: Title</h3>
+      <script src="./main.js"></script>
     </div>
 
     <div id="Kanban"></div>
-
-    <script src="../dist/jkanban.min.js"></script>
+    <script src="./data.js"></script>
+    <script src="./jkanban.min.js"></script>
     <script src="./kanban.js"></script>
   </body>
 </html>
