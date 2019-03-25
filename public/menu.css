@@ -1,11 +1,11 @@
-@import url('https://fonts.googleapis.com/css?family=Signika');
+@import url("https://fonts.googleapis.com/css?family=Signika");
 
 #Menu {
   padding: 5px;
 }
 
 body {
-  font-family: 'Signika', sans-serif;
+  font-family: "Signika", sans-serif;
 }
 
 ul {
@@ -15,7 +15,7 @@ ul {
   overflow: hidden;
   background-color: grey;
   border-radius: 10pt;
-  font-family: 'Signika', sans-serif;
+  font-family: "Signika", sans-serif;
 }
 
 li {
@@ -29,7 +29,7 @@ li a {
   padding: 14px 16px;
   text-decoration: none;
   border-radius: 10pt;
-  font-family: 'Signika', sans-serif;
+  font-family: "Signika", sans-serif;
 }
 
 #boardtitle {
@@ -39,19 +39,33 @@ li a {
 #title {
   font-size: 13pt;
   position: relative;
-  left: 5px;
+  left: 30px;
 }
 
-#search {
+#searchBox {
   position: relative;
   top: 12px;
 }
 
-#find {
+#findBoard {
   position: relative;
   top: 11px;
-  font-family: 'Signika', sans-serif;
+  font-family: "Signika", sans-serif;
   font-size: 13px;
+}
+
+#deleteBox {
+  position: relative;
+  top: 12px;
+  left: 5px;
+}
+
+#deleteBoard {
+  position: relative;
+  top: 11px;
+  font-family: "Signika", sans-serif;
+  font-size: 13px;
+  left: 5px;
 }
 
 #newBoard:hover {
