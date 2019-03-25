@@ -3,8 +3,96 @@ const findBoard = document.getElementById("findBoard");
 const searchBox = document.getElementById("searchBox");
 const word = document.getElementById("title");
 const boardtitle = document.getElementById("boardtitle");
+const saveBoard = document.getElementById("saveBoard")
 
 let loadedboard = false;
+
+let board
+
+saveBoard.addEventListener("click", (e) => {
+    e.preventDefault()
+    
+    let board
+
+    let currentBoad = document.getElementsByClassName("kanban-drag")
+    let toDoBoard = currentBoad[0]
+    let workBoard = currentBoad[1]
+    let doneBoard = currentBoad[2]
+
+    let id = searchBox.value
+
+    let toDoItems = []
+    for (let i = 0; i < toDoBoard.children.length; i++){
+        console.log(i)
+        let item = toDoBoard.children[i].textContent
+        console.log(item)
+        let newitem = {
+            id: `item${i}`,
+            title: `${item}`
+        }
+        toDoItems.push(newitem)
+    }
+
+    console.log(toDoItems)
+
+    let workItems = []
+    for (let i = 0; i < workBoard.children.length; i++){
+        console.log(i)
+        let item = workBoard.children[i].textContent
+        console.log(item)
+        let newitem = {
+            id: `item${i}`,
+            title: `${item}`
+        }
+        workItems.push(newitem)
+    }
+
+    let doneItems = []
+    for (let i = 0; i < doneBoard.children.length; i++){
+        console.log(i)
+        let item = doneBoard.children[i].textContent
+        console.log(item)
+        let newitem = {
+            id: `item${i}`,
+            title: `${item}`
+        }
+        doneItems.push(newitem)
+    } 
+
+
+    fetch(`/board/${id}`, {
+        method: "put",
+        headers: { 'Content-type': 'application/json' },
+        body: JSON.stringify({
+            title: "AB NEW TEST",
+            
+            board:
+            
+            [{
+                    id: "_todo",
+                    title: "To Do",
+                    class: "info,good",
+                    dragTo: ["_todo", "_working", "_done"],
+                    item: toDoItems
+                },
+                {
+                    id: "_working",
+                    title: "Working",
+                    class: "info,good",
+                    dragTo: ["_todo", "_working", "_done"],
+                    item: workItems
+                },
+                {
+                    id: "_done",
+                    title: "Done",
+                    class: "info,good",
+                    dragTo: ["_todo", "_working", "_done"],
+                    item: doneItems
+                }
+            ]
+        })
+    })
+})
 
 boardtitle.addEventListener("click", e => {
     e.preventDefault();
@@ -12,25 +100,6 @@ boardtitle.addEventListener("click", e => {
     console.log("Test");
 });
 
-let newdata = {
-    board: {
-        id: "_todo",
-        title: "To Do",
-        class: "info,good",
-        dragTo: ["_working", "_done"],
-        item: [{
-                id: "_test_delete",
-                click: " function (el) {Kanban.removeElement(el.dataset.eid)}",
-                title: "testing 123"
-            },
-            {
-                title: "also tetsdfgv",
-                id: "click",
-                click: "function (el) {Kanban.removeElement(el.dataset.eid)}"
-            }
-        ]
-    }
-};
 
 newBoard.addEventListener("click", e => {
     e.preventDefault();
@@ -39,6 +108,7 @@ newBoard.addEventListener("click", e => {
 
     fetch(`/board`, {
         method: "post",
+        headers: { 'Content-type': 'application/json' },
         body: JSON.stringify({
             title: "new working title",
             board: [{
@@ -48,7 +118,6 @@ newBoard.addEventListener("click", e => {
                     dragTo: ["_todo", "_working", "_done"],
                     item: [{
                             id: "item 1",
-
                             title: `Item 1 - Click and drag me to another board`,
                         },
                         {
