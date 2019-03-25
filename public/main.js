@@ -61,6 +61,8 @@ saveBoard.addEventListener("click", e => {
       class: color
     };
     doneItems.push(newitem);
+
+    word.textContent = `Your board has been saved`;
   }
   fetch(`/board/${id}`, {
     method: "put",
