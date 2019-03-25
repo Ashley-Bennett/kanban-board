@@ -68,6 +68,14 @@ li a {
   left: 5px;
 }
 
+#renameBox {
+  display: none;
+}
+
+#renameBoard {
+  display: none;
+}
+
 #newBoard:hover {
   cursor: pointer;
 }
