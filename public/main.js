@@ -30,14 +30,18 @@ saveBoard.addEventListener("click", (e) => {
 
     let id = searchBox.value
 
+    console.log(toDoBoard.children[0].dataset.class)
+
     let toDoItems = []
     for (let i = 0; i < toDoBoard.children.length; i++) {
         console.log(i)
         let item = toDoBoard.children[i].textContent
+        let color = toDoBoard.children[i].dataset.class
         console.log(item)
         let newitem = {
             id: `item${i}`,
-            title: `${item}`
+            title: `${item}`,
+            class: color
         }
         toDoItems.push(newitem)
     }
@@ -48,10 +52,12 @@ saveBoard.addEventListener("click", (e) => {
     for (let i = 0; i < workBoard.children.length; i++) {
         console.log(i)
         let item = workBoard.children[i].textContent
+        let color = workBoard.children[i].dataset.class
         console.log(item)
         let newitem = {
             id: `item${i}`,
-            title: `${item}`
+            title: `${item}`,
+            class: color
         }
         workItems.push(newitem)
     }
@@ -60,10 +66,12 @@ saveBoard.addEventListener("click", (e) => {
     for (let i = 0; i < doneBoard.children.length; i++) {
         console.log(i)
         let item = doneBoard.children[i].textContent
+        let color = doneBoard.children[i].dataset.class
         console.log(item)
         let newitem = {
             id: `item${i}`,
-            title: `${item}`
+            title: `${item}`,
+            class: color
         }
         doneItems.push(newitem)
     }
@@ -127,16 +135,12 @@ newBoard.addEventListener("click", e => {
                         item: [{
                                 id: "item 1",
                                 title: `Item 1 - Click and drag me to another board`,
+                                class: "red"
                             },
                             {
                                 title: `Item 2 - Click on me to delete me`,
                                 id: "_test_delete",
-
-                                title: `Item 1 - Click and drag me to another board`
-                            },
-                            {
-                                title: `Item 2 - Click on me to delete me`,
-                                id: "_test_delete"
+                                class: "none"
                             }
                         ]
                     },
@@ -147,11 +151,13 @@ newBoard.addEventListener("click", e => {
                         dragTo: ["_todo", "_working", "_done"],
                         item: [{
                                 id: "new item2",
-                                title: `Item 17`
+                                title: `Item 3`,
+                                class: "blue"
                             },
                             {
-                                title: `Item 21`,
-                                id: "new click"
+                                title: `Item 4`,
+                                id: "new click",
+                                class: "none"
                             }
                         ]
                     },
@@ -162,11 +168,13 @@ newBoard.addEventListener("click", e => {
                         dragTo: ["_todo", "_working", "_done"],
                         item: [{
                                 id: "_test_deleteagain",
-                                title: `Item 18`
+                                title: `Item 5`,
+                                class: "none"
                             },
                             {
-                                title: `Item 23`,
-                                id: "clickalso"
+                                title: `Item 6`,
+                                id: "clickalso",
+                                class: "none"
                             }
                         ]
                     }
