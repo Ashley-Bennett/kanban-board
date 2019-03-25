@@ -6,13 +6,16 @@ const renameBox = document.getElementById("renameBox");
 const word = document.getElementById("title");
 const boardtitle = document.getElementById("boardtitle");
 const saveBoard = document.getElementById("saveBoard");
+
 let loadedboard = false;
 let board;
+
 boardtitle.addEventListener("click", e => {
   e.preventDefault();
   renameBox.style.display = "block";
   renameBoard.style.display = "block";
 });
+
 saveBoard.addEventListener("click", e => {
   e.preventDefault();
   let board;
@@ -70,7 +73,7 @@ saveBoard.addEventListener("click", e => {
       "Content-type": "application/json"
     },
     body: JSON.stringify({
-      title: "AB NEW TEST",
+      title: "Kanban Board",
       board: [
         {
           id: "_todo",
