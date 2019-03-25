@@ -30,6 +30,8 @@ let newdata = {
 newBoard.addEventListener("click", e => {
   e.preventDefault();
 
+  word.innerText = "New Kanban Board Created";
+
   fetch(`/board`, {
     method: "post",
     body: "title=Your New Board",
@@ -60,13 +62,13 @@ findBoard.addEventListener("click", e => {
         let returnedData = JSON.parse(data);
         console.log(returnedData.name);
         if (returnedData.name == "CastError") {
-          word.innerText = "Kanboard Not Found";
+          word.innerText = "Kanban Board Not Found";
           loadedboard = false;
         } else {
           // loadedboard = false;
           let board = returnedData.board;
           console.log(board);
-          word.innerText = "Board Loaded";
+          word.innerText = "Kanban Board Loaded";
           // console.log(returnedData.title);
           boardtitle.innerText = returnedData.title;
           let Kanban = new jKanban({
