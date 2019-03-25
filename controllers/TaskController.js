@@ -76,3 +76,19 @@ exports.readBoard = (req, res) => {
     // console.log(board);
   });
 };
+
+
+exports.updateBoard = (req, res) => {
+  Board.findOneAndUpdate(
+    { _id: req.params.boardid },
+    req.body,
+    { new: true },
+    (err, task) => {
+      if (err) {
+        res.status(500).send(err);
+      }
+      res.status(200).json(task)
+      console.log("Board Updated");
+    }
+  );
+}

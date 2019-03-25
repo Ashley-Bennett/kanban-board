@@ -41,6 +41,10 @@ app.get("/board/:boardid", (req, res) => {
   // return res.send({object: res})
 });
 
+app.put("/board/:boardid", (req, res) => {
+  taskController.updateBoard(req, res)
+})
+
 app.listen(port, () => {
   console.log(`Server running at http://localhost:${port}`);
 });
