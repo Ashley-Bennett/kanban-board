@@ -8,23 +8,50 @@ const boardtitle = document.getElementById("boardtitle");
 const saveBoard = document.getElementById("saveBoard");
 
 let loadedboard = false;
+
 let board;
+
+renameBoard.addEventListener("click", e => {
+  e.preventDefault();
+
+  let id = searchBox.value;
+
+  fetch(`/board/${id}`, {
+    method: "put",
+    headers: {
+      "Content-type": "application/json"
+    },
+    body: JSON.stringify({
+      title: `${renameBox.value}`
+    })
+  });
+
+  boardtitle.textContent = renameBox.value;
+  console.log("clicked");
+  console.log(renameBox.value);
+});
 
 boardtitle.addEventListener("click", e => {
   e.preventDefault();
+
   renameBox.style.display = "block";
   renameBoard.style.display = "block";
 });
 
 saveBoard.addEventListener("click", e => {
   e.preventDefault();
+
   let board;
+
   let currentBoad = document.getElementsByClassName("kanban-drag");
   let toDoBoard = currentBoad[0];
   let workBoard = currentBoad[1];
   let doneBoard = currentBoad[2];
+
   let id = searchBox.value;
+
   // console.log(toDoBoard.children[0].dataset.class)
+
   let toDoItems = [];
   for (let i = 0; i < toDoBoard.children.length; i++) {
     console.log(i);
@@ -38,7 +65,9 @@ saveBoard.addEventListener("click", e => {
     };
     toDoItems.push(newitem);
   }
+
   console.log(toDoItems);
+
   let workItems = [];
   for (let i = 0; i < workBoard.children.length; i++) {
     console.log(i);
@@ -52,6 +81,7 @@ saveBoard.addEventListener("click", e => {
     };
     workItems.push(newitem);
   }
+
   let doneItems = [];
   for (let i = 0; i < doneBoard.children.length; i++) {
     console.log(i);
@@ -64,16 +94,18 @@ saveBoard.addEventListener("click", e => {
       class: color
     };
     doneItems.push(newitem);
-
-    word.textContent = `Your board has been saved`;
   }
+
+  word.textContent = `Your board has been saved`;
+
   fetch(`/board/${id}`, {
     method: "put",
     headers: {
       "Content-type": "application/json"
     },
     body: JSON.stringify({
-      title: "Kanban Board",
+      title: "AB NEW TEST",
+
       board: [
         {
           id: "_todo",
@@ -100,9 +132,12 @@ saveBoard.addEventListener("click", e => {
     })
   });
 });
+
 newBoard.addEventListener("click", e => {
   e.preventDefault();
+
   word.innerText = "New Kanban Board Created";
+
   return fetch(`/board`, {
     method: "post",
     headers: {
@@ -181,11 +216,14 @@ newBoard.addEventListener("click", e => {
       word.textContent = `Your board ID is ${returnedData._id}`;
     });
 });
+
 findBoard.addEventListener("click", e => {
   e.preventDefault();
+
   word.innerText = "Enter Valid ID to load Kanban board.";
   let id = searchBox.value;
   // console.log(id)
+
   if (loadedboard == false) {
     loadedboard = true;
     return (returnData = fetch(`/board/${id}`)
@@ -244,6 +282,7 @@ findBoard.addEventListener("click", e => {
                   formItem.setAttribute("class", "itemform");
                   formItem.innerHTML =
                     '<div class="form-group"><textarea class="form-control" rows="2" autofocus="true"></textarea></div><div class="form-group"><button type="submit" class="btn btn-primary btn-xs pull-right">Submit</button><button type="button" id="CancelBtn" class="btn btn-default btn-xs pull-right">Cancel</button><select class="color-select"><option value="None"></option><option value="red">Red</option><option value="green">Green</option><option value="blue">Blue</option><option value="pink">Pink</option></select></div>';
+
                   Kanban.addForm(boardId, formItem);
                   formItem.addEventListener("submit", function(e) {
                     e.preventDefault();
@@ -277,6 +316,7 @@ findBoard.addEventListener("click", e => {
                 formItem.setAttribute("class", "itemform");
                 formItem.innerHTML =
                   '<div class="form-group"><textarea class="form-control" rows="2" autofocus="true"></textarea></div><div class="form-group"><button type="submit" class="btn btn-primary btn-xs pull-right">Submit</button><button type="button" id="CancelBtn" class="btn btn-default btn-xs pull-right">Cancel</button><select class="color-select"><option value="None"></option><option value="red">Red</option><option value="green">Green</option><option value="blue">Blue</option><option value="pink">Pink</option></select></div>';
+
                 Kanban.addForm(boardId, formItem);
                 formItem.addEventListener("submit", function(e) {
                   e.preventDefault();
