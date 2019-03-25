@@ -13,14 +13,20 @@
     <div id="Menu">
       <ul>
         <li><a id="newBoard">New Board</a></li>
+        <li><a id="saveBoard">Save Board</a></li>
         <li>
           <form>
-            <input id="search" type="text" />
-            <button id="find">Find</button>
+            <input id="searchBox" type="text" />
+            <button id="findBoard">Load Board</button>
           </form>
+          <li>
+            <form>
+              <input id="deleteBox" type="text" />
+              <button id="deleteBoard">Delete Board</button>
+            </form>
+          </li>
         </li>
         <li><h1 id="title"></h1></li>
-        <li><a href="http://google.co.uk"></a></li>
       </ul>
       <h3 id="boardtitle">Kanban Board:</h3>
       <script src="./jkanban.min.js"></script>
