@@ -52,28 +52,28 @@ exports.deleteTask = (req, res) => {
   });
 };
 
-///
+////
 
 exports.createNewBoard = (req, res) => {
   let newBoard = new Board(req.body);
-  console.log(req.body)
+  console.log(req.body);
   newBoard.save((err, board) => {
     if (err) {
       res.status(500).send(err);
     }
     res.send(board);
-    console.log(board)
+    console.log(board);
   });
 };
 
 exports.readBoard = (req, res) => {
-  // console.log(req.params.boardid)
+  // console.log(req.params.boardid);
   Board.findById(req.params.boardid, (err, board) => {
     if (err) {
       res.status(500).send(err);
     }
-    // console.log(board)
     res.send(board);
+    // console.log(board);
   });
 };
 
