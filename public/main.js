@@ -6,6 +6,12 @@ const boardtitle = document.getElementById("boardtitle");
 
 let loadedboard = false;
 
+boardtitle.addEventListener("click", e => {
+  e.preventDefault();
+
+  console.log("Test");
+});
+
 let newdata = {
   board: {
     id: "_todo",
