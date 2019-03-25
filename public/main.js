@@ -23,35 +23,44 @@ saveBoard.addEventListener("click", e => {
 
   let board;
 
-  let currentBoad = document.getElementsByClassName("kanban-drag");
-  let toDoBoard = currentBoad[0];
-  let workBoard = currentBoad[1];
-  let doneBoard = currentBoad[2];
+  renameBox.style.display = "block";
+  renameBoard.style.display = "block";
+});
 
-  let id = searchBox.value;
+saveBoard.addEventListener("click", e => {
+  e.preventDefault();
+
+  console.log(toDoBoard.children[0].dataset.class);
 
   let toDoItems = [];
   for (let i = 0; i < toDoBoard.children.length; i++) {
     console.log(i);
     let item = toDoBoard.children[i].textContent;
+    let color = toDoBoard.children[i].dataset.class;
     console.log(item);
     let newitem = {
       id: `item${i}`,
-      title: `${item}`
+      title: `${item}`,
+      class: color
     };
     toDoItems.push(newitem);
   }
 
-  console.log(toDoItems);
+  let currentBoad = document.getElementsByClassName("kanban-drag");
+  let toDoBoard = currentBoad[0];
+  let workBoard = currentBoad[1];
+  let doneBoard = currentBoad[2];
 
   let workItems = [];
   for (let i = 0; i < workBoard.children.length; i++) {
     console.log(i);
     let item = workBoard.children[i].textContent;
+    let color = workBoard.children[i].dataset.class;
     console.log(item);
     let newitem = {
       id: `item${i}`,
-      title: `${item}`
+      title: `${item}`,
+      class: color
     };
     workItems.push(newitem);
   }
@@ -60,17 +69,23 @@ saveBoard.addEventListener("click", e => {
   for (let i = 0; i < doneBoard.children.length; i++) {
     console.log(i);
     let item = doneBoard.children[i].textContent;
+    let color = doneBoard.children[i].dataset.class;
     console.log(item);
     let newitem = {
       id: `item${i}`,
-      title: `${item}`
+      title: `${item}`,
+      class: color
     };
     doneItems.push(newitem);
   }
 
+  console.log(toDoItems);
+
   fetch(`/board/${id}`, {
     method: "put",
-    headers: { "Content-type": "application/json" },
+    headers: {
+      "Content-type": "application/json"
+    },
     body: JSON.stringify({
       title: "AB NEW TEST",
 
@@ -106,9 +121,11 @@ newBoard.addEventListener("click", e => {
 
   word.innerText = "New Kanban Board Created";
 
-  fetch(`/board`, {
+  return fetch(`/board`, {
     method: "post",
-    headers: { "Content-type": "application/json" },
+    headers: {
+      "Content-type": "application/json"
+    },
     body: JSON.stringify({
       title: "new working title",
       board: [
@@ -120,17 +137,13 @@ newBoard.addEventListener("click", e => {
           item: [
             {
               id: "item 1",
-              title: `Item 1 - Click and drag me to another board`
+              title: `Item 1 - Click and drag me to another board`,
+              class: "red"
             },
             {
               title: `Item 2 - Click on me to delete me`,
               id: "_test_delete",
-
-              title: `Item 1 - Click and drag me to another board`
-            },
-            {
-              title: `Item 2 - Click on me to delete me`,
-              id: "_test_delete"
+              class: "none"
             }
           ]
         },
@@ -142,11 +155,13 @@ newBoard.addEventListener("click", e => {
           item: [
             {
               id: "new item2",
-              title: `Item 17`
+              title: `Item 3`,
+              class: "blue"
             },
             {
-              title: `Item 21`,
-              id: "new click"
+              title: `Item 4`,
+              id: "new click",
+              class: "none"
             }
           ]
         },
@@ -158,29 +173,31 @@ newBoard.addEventListener("click", e => {
           item: [
             {
               id: "_test_deleteagain",
-              title: `Item 18`
+              title: `Item 5`,
+              class: "none"
             },
             {
-              title: `Item 23`,
-              id: "clickalso"
+              title: `Item 6`,
+              id: "clickalso",
+              class: "none"
             }
           ]
         }
       ]
     })
-      .then(response => {
-        // console.log(response);
-        // return response.json();
-        console.log(response);
-      })
-      .then(myJson => {
-        // return JSON.stringify(myJson);
-      })
-      .then(data => {
-        // let returnedData = JSON.parse(data);
-        // console.log(returnedData.name);
-      })
-  });
+  })
+    .then(response => {
+      // console.log(response);
+      return response.json();
+    })
+    .then(myJson => {
+      return JSON.stringify(myJson);
+    })
+    .then(data => {
+      let returnedData = JSON.parse(data);
+      console.log(returnedData._id);
+      word.textContent = `Your board ID is ${returnedData._id}`;
+    });
 });
 
 findBoard.addEventListener("click", e => {

@@ -14,17 +14,17 @@ const BoardSchema = new Schema({
       "dragTo": [String, String],
       "item": [{
           "id": String,
-          "click": String,
+          "class": String,
           "title": String,
         },
         {
           "title": String,
           "id": String,
-          "click": String,
+          "class": String,
         },
         {
           "id": String,
-          "click": String,
+          "class": String,
           "title": String,
         },
       ]
@@ -38,17 +38,17 @@ const BoardSchema = new Schema({
       "dragTo": [String, String],
       "item": [{
           "id": String,
-          "click": String,
+          "class": String,
           "title": String,
         },
         {
           "title": String,
           "id": String,
-          "click": String,
+          "class": String,
         },
         {
           "id": String,
-          "click": String,
+          "class": String,
           "title": String,
         },
       ]
@@ -62,17 +62,17 @@ const BoardSchema = new Schema({
       "dragTo": [String, String],
       "item": [{
           "id": String,
-          "click": String,
+          "class": String,
           "title": String,
         },
         {
           "title": String,
           "id": String,
-          "click": String,
+          "class": String,
         },
         {
           "id": String,
-          "click": String,
+          "class": String,
           "title": String,
         },
       ]
