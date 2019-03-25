@@ -1,5 +1,11 @@
+@import url('https://fonts.googleapis.com/css?family=Signika');
+
 #Menu {
   padding: 5px;
+}
+
+body {
+  font-family: 'Signika', sans-serif;
 }
 
 ul {
@@ -9,6 +15,7 @@ ul {
   overflow: hidden;
   background-color: grey;
   border-radius: 10pt;
+  font-family: 'Signika', sans-serif;
 }
 
 li {
@@ -21,6 +28,8 @@ li a {
   text-align: center;
   padding: 14px 16px;
   text-decoration: none;
+  border-radius: 10pt;
+  font-family: 'Signika', sans-serif;
 }
 
 #boardtitle {
@@ -28,7 +37,7 @@ li a {
 }
 
 #title {
-  font-size: 15pt;
+  font-size: 13pt;
   position: relative;
   left: 5px;
 }
@@ -40,5 +49,10 @@ li a {
 
 #find {
   position: relative;
-  top: 12px;
+  top: 11px;
+  font-family: 'Signika', sans-serif;
+  font-size: 13px;
 }
+
+li a:hover {
+  background-color: #ff5656;
