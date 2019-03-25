@@ -162,20 +162,20 @@ findBoard.addEventListener("click", e => {
               id: "_todo",
               title: "To Do",
               class: "info,good",
-              dragTo: ["_working", "_done"],
+              dragTo: ["_todo", "_working", "_done"],
               item: [
                 {
                   id: "_test_delete",
                   click: function(el) {
                     Kanban.removeElement(el.dataset.eid);
                   },
-                  title: `title1`,
+                  title: `Item 1 - Click and drag me to another board`,
                   drag: function(el, source) {},
                   dragend: function(el) {},
                   drop: function(el) {}
                 },
                 {
-                  title: `title2`,
+                  title: `Item 2 - Click on me to delete me`,
                   id: "click",
                   click: function(el) {
                     Kanban.removeElement(el.dataset.eid);
@@ -185,22 +185,22 @@ findBoard.addEventListener("click", e => {
             },
             {
               id: "_working",
-              title: "To Do",
+              title: "Working",
               class: "info,good",
-              dragTo: ["_working", "_done"],
+              dragTo: ["_todo", "_working", "_done"],
               item: [
                 {
                   id: "_test_delete",
                   click: function(el) {
                     Kanban.removeElement(el.dataset.eid);
                   },
-                  title: `title1`,
+                  title: `Item 1`,
                   drag: function(el, source) {},
                   dragend: function(el) {},
                   drop: function(el) {}
                 },
                 {
-                  title: `title2`,
+                  title: `Item 2`,
                   id: "click",
                   click: function(el) {
                     Kanban.removeElement(el.dataset.eid);
@@ -212,20 +212,20 @@ findBoard.addEventListener("click", e => {
               id: "_done",
               title: "To Do",
               class: "info,good",
-              dragTo: ["_working", "_done"],
+              dragTo: ["_todo", "_working", "_done"],
               item: [
                 {
                   id: "_test_delete",
                   click: function(el) {
                     Kanban.removeElement(el.dataset.eid);
                   },
-                  title: `title1`,
+                  title: `Item 1`,
                   drag: function(el, source) {},
                   dragend: function(el) {},
                   drop: function(el) {}
                 },
                 {
-                  title: `title2`,
+                  title: `Item 2`,
                   id: "click",
                   click: function(el) {
                     Kanban.removeElement(el.dataset.eid);
