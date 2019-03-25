@@ -39,18 +39,14 @@ newBoard.addEventListener("click", e => {
                     class: "info,good",
                     dragTo: ["_todo", "_working", "_done"],
                     item: [{
-                            id: "_test_delete",
-                            click: function (el) {
-                                Kanban.removeElement(el.dataset.eid);
-                            },
+                            id: "item 1",
+                            
                             title: `Item 1 - Click and drag me to another board`,
                         },
                         {
                             title: `Item 2 - Click on me to delete me`,
-                            id: "click",
-                            click: function (el) {
-                                Kanban.removeElement(el.dataset.eid);
-                            }
+                            id: "_test_delete",
+                            
                         }
                     ]
                 },
@@ -60,18 +56,12 @@ newBoard.addEventListener("click", e => {
                     class: "info,good",
                     dragTo: ["_todo", "_working", "_done"],
                     item: [{
-                            id: "_test_delete",
-                            click: function (el) {
-                                Kanban.removeElement(el.dataset.eid);
-                            },
+                            id: "new item2",
                             title: `Item 17`,
                         },
                         {
                             title: `Item 21`,
-                            id: "click",
-                            click: function (el) {
-                                Kanban.removeElement(el.dataset.eid);
-                            }
+                            id: "new click",
                         }
                     ]
                 },
@@ -81,18 +71,12 @@ newBoard.addEventListener("click", e => {
                     class: "info,good",
                     dragTo: ["_todo", "_working", "_done"],
                     item: [{
-                            id: "_test_delete",
-                            click: function (el) {
-                                Kanban.removeElement(el.dataset.eid);
-                            },
+                            id: "_test_deleteagain",
                             title: `Item 18`,
                         },
                         {
                             title: `Item 23`,
-                            id: "click",
-                            click: function (el) {
-                                Kanban.removeElement(el.dataset.eid);
-                            }
+                            id: "clickalso",
                         }
                     ]
                 }
@@ -140,7 +124,8 @@ findBoard.addEventListener("click", e => {
             gutter: "10px",
             widthBoard: "450px",
             click: function(el) {
-              console.log("Trigger on all items click!");
+              console.log(el.dataset.eid);
+              Kanban.removeElement(el.dataset.eid)
             },
             buttonClick: function(el, boardId) {
               let board = document.getElementsByClassName("kanban-drag");
@@ -179,9 +164,9 @@ findBoard.addEventListener("click", e => {
                       Kanban.addElement(boardId, {
                         title: text,
                         id: text,
-                        click: function(el) {
-                          Kanban.removeElement(el.dataset.eid);
-                        },
+                        // click: function(el) {
+                        //   Kanban.removeElement(el.dataset.eid);
+                        // },
                         class: color
                       });
                       formItem.parentNode.removeChild(formItem);
