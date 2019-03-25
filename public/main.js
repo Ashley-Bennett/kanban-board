@@ -7,46 +7,110 @@ const boardtitle = document.getElementById("boardtitle");
 let loadedboard = false;
 
 let newdata = {
-  board: {
-    id: "_todo",
-    title: "To Do",
-    class: "info,good",
-    dragTo: ["_working", "_done"],
-    item: [
-      {
-        id: "_test_delete",
-        click: " function (el) {Kanban.removeElement(el.dataset.eid)}",
-        title: "testing 123"
-      },
-      {
-        title: "also tetsdfgv",
-        id: "click",
-        click: "function (el) {Kanban.removeElement(el.dataset.eid)}"
-      }
-    ]
-  }
+    board: {
+        id: "_todo",
+        title: "To Do",
+        class: "info,good",
+        dragTo: ["_working", "_done"],
+        item: [{
+                id: "_test_delete",
+                click: " function (el) {Kanban.removeElement(el.dataset.eid)}",
+                title: "testing 123"
+            },
+            {
+                title: "also tetsdfgv",
+                id: "click",
+                click: "function (el) {Kanban.removeElement(el.dataset.eid)}"
+            }
+        ]
+    }
 };
 
 newBoard.addEventListener("click", e => {
-  e.preventDefault();
+    e.preventDefault();
 
-  word.innerText = "New Kanban Board Created";
+    fetch(`/board`, {
+        method: "post",
+        body: JSON.stringify({
+            title: "new working title",
+            board: [{
+                    id: "_todo",
+                    title: "To Do",
+                    class: "info,good",
+                    dragTo: ["_todo", "_working", "_done"],
+                    item: [{
+                            id: "_test_delete",
+                            click: function (el) {
+                                Kanban.removeElement(el.dataset.eid);
+                            },
+                            title: `Item 1 - Click and drag me to another board`,
+                        },
+                        {
+                            title: `Item 2 - Click on me to delete me`,
+                            id: "click",
+                            click: function (el) {
+                                Kanban.removeElement(el.dataset.eid);
+                            }
+                        }
+                    ]
+                },
+                {
+                    id: "_working",
+                    title: "Working",
+                    class: "info,good",
+                    dragTo: ["_todo", "_working", "_done"],
+                    item: [{
+                            id: "_test_delete",
+                            click: function (el) {
+                                Kanban.removeElement(el.dataset.eid);
+                            },
+                            title: `Item 17`,
+                        },
+                        {
+                            title: `Item 21`,
+                            id: "click",
+                            click: function (el) {
+                                Kanban.removeElement(el.dataset.eid);
+                            }
+                        }
+                    ]
+                },
+                {
+                    id: "_done",
+                    title: "Done",
+                    class: "info,good",
+                    dragTo: ["_todo", "_working", "_done"],
+                    item: [{
+                            id: "_test_delete",
+                            click: function (el) {
+                                Kanban.removeElement(el.dataset.eid);
+                            },
+                            title: `Item 18`,
+                        },
+                        {
+                            title: `Item 23`,
+                            id: "click",
+                            click: function (el) {
+                                Kanban.removeElement(el.dataset.eid);
+                            }
+                        }
+                    ]
+                }
+            ]
 
-  fetch(`/board`, {
-    method: "post",
-    body: "title=Your New Board",
-    headers: {
-      "Content-type": "application/x-www-form-urlencoded"
-    }
-  });
+        }),
+        headers: {
+            "Content-type": 'application/json'
+        }
+    });
 });
 
 findBoard.addEventListener("click", e => {
-  e.preventDefault();
+    e.preventDefault();
 
-  word.innerText = "Enter Valid ID to load Kanban board.";
-  let id = search.value;
-  // console.log(id)
+    word.innerText = "Enter Valid ID to load Kanban board.";
+    let id = search.value;
+    // console.log(id)
 
   if (loadedboard == false) {
     loadedboard = true;
@@ -165,83 +229,7 @@ findBoard.addEventListener("click", e => {
               }
             },
             addItemButton: true,
-            boards: [
-              {
-                id: "_todo",
-                title: "To Do",
-                class: "info,good",
-                dragTo: ["_working", "_done"],
-                item: [
-                  {
-                    id: "_test_delete",
-                    click: function(el) {
-                      Kanban.removeElement(el.dataset.eid);
-                    },
-                    title: `title1`,
-                    drag: function(el, source) {},
-                    dragend: function(el) {},
-                    drop: function(el) {}
-                  },
-                  {
-                    title: `title2`,
-                    id: "click",
-                    click: function(el) {
-                      Kanban.removeElement(el.dataset.eid);
-                    }
-                  }
-                ]
-              },
-              {
-                id: "_working",
-                title: "To Do",
-                class: "info,good",
-                dragTo: ["_working", "_done"],
-                item: [
-                  {
-                    id: "_test_delete",
-                    click: function(el) {
-                      Kanban.removeElement(el.dataset.eid);
-                    },
-                    title: `title1`,
-                    drag: function(el, source) {},
-                    dragend: function(el) {},
-                    drop: function(el) {}
-                  },
-                  {
-                    title: `title2`,
-                    id: "click",
-                    click: function(el) {
-                      Kanban.removeElement(el.dataset.eid);
-                    }
-                  }
-                ]
-              },
-              {
-                id: "_done",
-                title: "To Do",
-                class: "info,good",
-                dragTo: ["_working", "_done"],
-                item: [
-                  {
-                    id: "_test_delete",
-                    click: function(el) {
-                      Kanban.removeElement(el.dataset.eid);
-                    },
-                    title: `title1`,
-                    drag: function(el, source) {},
-                    dragend: function(el) {},
-                    drop: function(el) {}
-                  },
-                  {
-                    title: `title2`,
-                    id: "click",
-                    click: function(el) {
-                      Kanban.removeElement(el.dataset.eid);
-                    }
-                  }
-                ]
-              }
-            ]
+            boards: board,
           });
         }
       }));

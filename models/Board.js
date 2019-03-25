@@ -7,30 +7,79 @@ const BoardSchema = new Schema({
     required: false
   },
 
-  board: {
-    "id": String,
-    "title": String,
-    "class": String,
-    "dragTo": [String, String],
-    "item": [{
-        "id": String,
-        "click": String,
-        "title": String,
-      },
-      {
-        "title": String,
-        "id": String,
-        "click": String,
-      },
-      {
-        "id": String,
-        "click": String,
-        "title": String,
-      },
-    ]
+  board: [{
+      "id": String,
+      "title": String,
+      "class": String,
+      "dragTo": [String, String],
+      "item": [{
+          "id": String,
+          "click": String,
+          "title": String,
+        },
+        {
+          "title": String,
+          "id": String,
+          "click": String,
+        },
+        {
+          "id": String,
+          "click": String,
+          "title": String,
+        },
+      ]
 
 
-  }
+    },
+    {
+      "id": String,
+      "title": String,
+      "class": String,
+      "dragTo": [String, String],
+      "item": [{
+          "id": String,
+          "click": String,
+          "title": String,
+        },
+        {
+          "title": String,
+          "id": String,
+          "click": String,
+        },
+        {
+          "id": String,
+          "click": String,
+          "title": String,
+        },
+      ]
+
+
+    },
+    {
+      "id": String,
+      "title": String,
+      "class": String,
+      "dragTo": [String, String],
+      "item": [{
+          "id": String,
+          "click": String,
+          "title": String,
+        },
+        {
+          "title": String,
+          "id": String,
+          "click": String,
+        },
+        {
+          "id": String,
+          "click": String,
+          "title": String,
+        },
+      ]
+
+
+    }
+  ]
 });
 
 module.exports = mongoose.model("Boards", BoardSchema);
