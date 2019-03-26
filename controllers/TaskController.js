@@ -54,6 +54,16 @@ exports.deleteTask = (req, res) => {
 
 ////
 
+exports.deleteBoard = (req, res) => {
+  Board.remove({ _id: req.params.boardid }, (err, board) => {
+    if (err) {
+      res.status(404).send(err);
+    }
+    // res.status(200).json({ message: "Task successfully deleted" });
+    res.send(board);
+  });
+};
+
 exports.createNewBoard = (req, res) => {
   let newBoard = new Board(req.body);
   console.log(req.body);
@@ -77,7 +87,6 @@ exports.readBoard = (req, res) => {
   });
 };
 
-
 exports.updateBoard = (req, res) => {
   Board.findOneAndUpdate(
     { _id: req.params.boardid },
@@ -87,8 +96,8 @@ exports.updateBoard = (req, res) => {
       if (err) {
         res.status(500).send(err);
       }
-      res.status(200).json(task)
+      res.status(200).json(task);
       console.log("Board Updated");
     }
   );
-}
+};
