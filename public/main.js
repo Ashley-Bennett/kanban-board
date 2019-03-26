@@ -140,7 +140,7 @@ saveBoard.addEventListener("click", e => {
       "Content-type": "application/json"
     },
     body: JSON.stringify({
-      title: "AB NEW TEST",
+      title: boardtitle.innerText,
 
       board: [
         {
