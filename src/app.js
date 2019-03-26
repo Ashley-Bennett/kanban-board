@@ -41,9 +41,15 @@ app.get("/board/:boardid", (req, res) => {
   // return res.send({object: res})
 });
 
+app.delete("/board/:boardid", (req, res) => {
+  taskController.deleteBoard(req, res);
+  // console.log(res)
+  // return res.send({object: res})
+});
+
 app.put("/board/:boardid", (req, res) => {
-  taskController.updateBoard(req, res)
-})
+  taskController.updateBoard(req, res);
+});
 
 app.listen(port, () => {
   console.log(`Server running at http://localhost:${port}`);

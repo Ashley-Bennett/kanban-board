@@ -2,6 +2,8 @@ const newBoard = document.getElementById("newBoard");
 const findBoard = document.getElementById("findBoard");
 const searchBox = document.getElementById("searchBox");
 const renameBoard = document.getElementById("renameBoard");
+const deleteBox = document.getElementById("deleteBox");
+const deleteBoard = document.getElementById("deleteBoard");
 const renameBox = document.getElementById("renameBox");
 const word = document.getElementById("title");
 const boardtitle = document.getElementById("boardtitle");
@@ -31,6 +33,34 @@ renameBoard.addEventListener("click", e => {
   console.log(renameBox.value);
 });
 
+deleteBoard.addEventListener("click", e => {
+  e.preventDefault();
+
+  let id = deleteBox.value;
+
+  fetch(`/board/${id}`, {
+    method: "delete",
+    headers: {
+      "Content-type": "application/json"
+    }
+  })
+    .then(response => {
+      return response.json();
+    })
+    .then(myJson => {
+      return JSON.stringify(myJson);
+    })
+    .then(data => {
+      let returnedData = JSON.parse(data);
+      console.log(returnedData.n);
+      if (returnedData.n == 0) {
+        word.textContent = `Delete Unsuccesful`;
+      } else if (returnedData.n == 1) {
+        word.textContent = `Delete Sucessful`;
+      }
+    });
+});
+
 boardtitle.addEventListener("click", e => {
   e.preventDefault();
 
@@ -40,8 +70,6 @@ boardtitle.addEventListener("click", e => {
 
 saveBoard.addEventListener("click", e => {
   e.preventDefault();
-
-  let board;
 
   let currentBoad = document.getElementsByClassName("kanban-drag");
   let toDoBoard = currentBoad[0];
