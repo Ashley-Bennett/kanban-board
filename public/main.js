@@ -181,7 +181,7 @@ newBoard.addEventListener("click", e => {
       "Content-type": "application/json"
     },
     body: JSON.stringify({
-      title: "new working title",
+      title: "New Kanban Board",
       board: [
         {
           id: "_todo",
