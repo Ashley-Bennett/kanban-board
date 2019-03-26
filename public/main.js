@@ -8,6 +8,7 @@ const renameBox = document.getElementById("renameBox");
 const word = document.getElementById("title");
 const boardtitle = document.getElementById("boardtitle");
 const saveBoard = document.getElementById("saveBoard");
+const instruction = document.getElementById("instruction");
 
 let loadedboard = false;
 
@@ -17,26 +18,33 @@ renameBoard.addEventListener("click", e => {
   e.preventDefault();
 
   let id = searchBox.value;
+  let box = renameBox.value;
 
-  fetch(`/board/${id}`, {
-    method: "put",
-    headers: {
-      "Content-type": "application/json"
-    },
-    body: JSON.stringify({
-      title: `${renameBox.value}`
-    })
-  });
+  if (box == "") {
+    console.log(id);
+    word.textContent = "You cannot rename your board to blank. Try again.";
+  } else {
+    fetch(`/board/${id}`, {
+      method: "put",
+      headers: {
+        "Content-type": "application/json"
+      },
+      body: JSON.stringify({
+        title: `${renameBox.value}`
+      })
+    });
 
-  boardtitle.textContent = renameBox.value;
-  console.log("clicked");
-  console.log(renameBox.value);
+    boardtitle.textContent = renameBox.value;
+    console.log("clicked");
+    console.log(renameBox.value);
+  }
 });
 
 deleteBoard.addEventListener("click", e => {
   e.preventDefault();
 
   let id = deleteBox.value;
+  instruction.style.display = "none";
 
   fetch(`/board/${id}`, {
     method: "delete",
@@ -164,6 +172,7 @@ saveBoard.addEventListener("click", e => {
 newBoard.addEventListener("click", e => {
   e.preventDefault();
 
+  instruction.style.display = "none";
   word.innerText = "New Kanban Board Created";
 
   return fetch(`/board`, {
@@ -248,6 +257,7 @@ newBoard.addEventListener("click", e => {
 findBoard.addEventListener("click", e => {
   e.preventDefault();
 
+  instruction.style.display = "none";
   word.innerText = "Enter Valid ID to load Kanban board.";
   let id = searchBox.value;
   // console.log(id)

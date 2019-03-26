@@ -8,8 +8,9 @@ body {
   font-family: "Signika", sans-serif;
 }
 
-.rename {
-  color: blue;
+#instruction {
+  display: block;
+  color: white;
 }
 
 ul {
@@ -85,4 +86,28 @@ li a {
 }
 li a:hover {
   background-color: #ff5656;
+}
+
+.footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: #304a92;
+  color: white;
+  text-align: left;
+}
+
+a:active {
+  text-decoration: none;
+  color: white;
+}
+a:link {
+  text-decoration: none;
+  color: white;
+}
+
+a:visited {
+  text-decoration: none;
+  color: white;
 }
